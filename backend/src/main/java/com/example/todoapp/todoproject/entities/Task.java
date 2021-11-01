@@ -1,14 +1,17 @@
 package com.example.todoapp.todoproject.entities;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class List {
+@Table(name = "tb_task")
+public class Task {
 	  
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,10 +22,10 @@ public class List {
 	private String description;
 	private LocalDate date;
 	
-	public List() {
+	public Task() {
 	}
 
-	public List(Long id, String name, String status, String description, LocalDate date) {
+	public Task(Long id, String name, String status, String description, LocalDate date) {
 		this.id = id;
 		this.name = name;
 		this.status = status;
@@ -68,5 +71,22 @@ public class List {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Task other = (Task) obj;
+		return Objects.equals(id, other.id);
 	}
 }
