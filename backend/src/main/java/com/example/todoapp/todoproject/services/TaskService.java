@@ -5,6 +5,8 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.todoapp.todoproject.dto.TaskDTO;
 import com.example.todoapp.todoproject.entities.Task;
 import com.example.todoapp.todoproject.repositories.TaskRepository;
+import com.example.todoapp.todoproject.services.exceptions.DatabaseException;
 import com.example.todoapp.todoproject.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -59,6 +62,20 @@ public class TaskService {
 		}
 		catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id not found" + id);
+		}
+	}
+	
+	public void delete(Long id) {
+		try {
+			repository.deleteById(id);
+		}
+		
+		catch(EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException("Id not found" + id);
+		}
+		
+		catch (DataIntegrityViolationException e) {
+			throw new DatabaseException("Integrity violation");
 		}
 	}
 }
