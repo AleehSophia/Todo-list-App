@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import com.example.todoapp.todoproject.entities.Task;
+import com.example.todoapp.todoproject.entities.enums.TaskStatus;
 
 public class TaskDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -11,14 +12,14 @@ public class TaskDTO implements Serializable{
 	private Long id;
 	
 	private String name;
-	private String status;
+	private TaskStatus status;
 	private String description;
 	private LocalDate date;
 	
 	public TaskDTO() {
 	}
 
-	public TaskDTO(Long id, String name, String status, String description, LocalDate date) {
+	public TaskDTO(Long id, String name, TaskStatus status, String description, LocalDate date) {
 		this.id = id;
 		this.name = name;
 		this.status = status;
@@ -50,11 +51,11 @@ public class TaskDTO implements Serializable{
 		this.name = name;
 	}
 
-	public String getStatus() {
+	public TaskStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(TaskStatus status) {
 		this.status = status;
 	}
 

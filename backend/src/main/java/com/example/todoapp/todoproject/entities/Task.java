@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.todoapp.todoproject.entities.enums.TaskStatus;
+
 @Entity
 @Table(name = "tb_task")
 public class Task {
@@ -18,14 +20,14 @@ public class Task {
 	private Long id;
 	
 	private String name;
-	private String status;
+	private TaskStatus status;
 	private String description;
 	private LocalDate date;
 	
 	public Task() {
 	}
 
-	public Task(Long id, String name, String status, String description, LocalDate date) {
+	public Task(Long id, String name, TaskStatus status, String description, LocalDate date) {
 		this.id = id;
 		this.name = name;
 		this.status = status;
@@ -49,11 +51,11 @@ public class Task {
 		this.name = name;
 	}
 
-	public String getStatus() {
+	public TaskStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(TaskStatus status) {
 		this.status = status;
 	}
 
