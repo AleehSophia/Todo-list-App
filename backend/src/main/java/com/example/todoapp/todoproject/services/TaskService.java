@@ -2,6 +2,8 @@ package com.example.todoapp.todoproject.services;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,5 +44,21 @@ public class TaskService {
 		entity = repository.save(entity);
 		
 		return new TaskDTO(entity);
+	}
+	
+	@Transactional
+	public TaskDTO update(Long id, TaskDTO dto) {
+		try {
+			Task entity = repository.getById(id);
+			entity.setName(dto.getName());
+			entity.setStatus(dto.getStatus());
+			entity.setDescription(dto.getDescription());
+			entity.setDate(dto.getDate());
+			entity = repository.save(entity);
+			return new TaskDTO(entity);
+		}
+		catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id not found" + id);
+		}
 	}
 }
