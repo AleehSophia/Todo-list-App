@@ -16,7 +16,7 @@ import com.example.todoapp.todoproject.entities.enums.TaskStatus;
 public class Task {
 	  
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String name;

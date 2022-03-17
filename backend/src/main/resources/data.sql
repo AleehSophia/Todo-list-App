@@ -1,0 +1,3 @@
+INSERT INTO tb_task(name, status, description, date) VALUES ('Trabalho de história', 0, 'Tema: Guerra mundial, 40 páginas, ABNT', '2019-05-05');
+INSERT INTO tb_task(name, status, description, date) VALUES ('Resolver seed projeto', 0, 'Arrumar seed do banco de dados, data não está correta', '2019-05-05');
+INSERT INTO tb_task(name, status, description, date) VALUES ('Testar projeto no postman', 0, 'TEm que testar o projeto no postman pra ver se está funcionando', '2019-05-05');
